@@ -3,6 +3,8 @@
 
 @section('link')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+    <script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 @endsection
 
 @section('script')
@@ -21,7 +23,9 @@
                     reader.onload = e => this.imageUrl = e.target.result
                 }
             }))
-        })
+        });
+
+        jalaliDatepicker.startWatch({time:true});
     </script>
 @endsection
 
@@ -54,8 +58,13 @@
         </div>
 
         <div class="col-md-3">
+            <label class="form-label">تصاویر محصول</label>
+            <input name="images[]" multiple type="file" class="form-control" />
+        </div>
+
+        <div class="col-md-3">
             <label class="form-label">نام</label>
-            <input name="name" value="{{ old('name') }}" type="text" class="form-control" />
+            <input name="name" type="text" value="{{ old('name') }}" class="form-control" />
             <div class="form-text text-danger">
                 @error('name')
                     {{ $message }}
@@ -63,20 +72,97 @@
             </div>
         </div>
 
-        {{-- <div class="col-md-3">
+        <div class="col-md-3">
+            <label class="form-label">دسته بندی</label>
+            <select name="category_id" class="form-select">
+                @foreach ($categories as $category)
+                    <option value={{ $category->id }}>{{ $category->name }}</option>
+                @endforeach
+            </select>
+            <div class="form-text text-danger">
+                @error('category_id')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-3">
             <label class="form-label">وضعیت</label>
             <select name="status" class="form-select">
-                <option {{ old('status') === '1' ? 'selected' : '' }} value="1">فعال</option>
-                <option {{ old('status') === '0' ? 'selected' : '' }} value="0">غیر فعال</option>
+                <option value="1">فعال</option>
+                <option value="0">غیر فعال</option>
             </select>
-            <div class="form-text text-danger">@error('status') {{$message}} @enderror</div>
-        </div> --}}
+            <div class="form-text text-danger">
+                @error('status')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">قیمت</label>
+            <input name="price" type="text" value="{{ old('price') }}" class="form-control" />
+            <div class="form-text text-danger">
+                @error('price')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">تعداد</label>
+            <input name="quantity" type="text" value="{{ old('quantity') }}" class="form-control" />
+            <div class="form-text text-danger">
+                @error('quantity')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">قیمت حراجی</label>
+            <input name="sale_price" type="text" value="{{ old('sale_price') }}" class="form-control" />
+            <div class="form-text text-danger">
+                @error('sale_price')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">تاریخ شروع حراجی</label>
+            <input data-jdp name="date_on_sale_from" type="text" class="form-control" />
+            <div class="form-text text-danger">
+                @error('date_on_sale_from')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">تاریخ پایان حراجی</label>
+            <input data-jdp name="date_on_sale_to" type="text" class="form-control" />
+            <div class="form-text text-danger">
+                @error('date_on_sale_to')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">توضیحات</label>
+            <textarea name="description" rows="5" class="form-control"></textarea>
+            <div class="form-text text-danger">
+                @error('description')
+                    {{ $message }}
+                @enderror
+            </div>
+        </div>
 
         <div>
             <button type="submit" class="btn btn-outline-dark mt-3">
-                ایجاد دسته بندی
+                ایجاد محصول
             </button>
         </div>
     </form>
 @endsection
- 

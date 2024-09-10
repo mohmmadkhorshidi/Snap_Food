@@ -30,6 +30,7 @@ return new class extends Migration
             $table->timestamp('date_on_sale_to')->nullable();
 
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
