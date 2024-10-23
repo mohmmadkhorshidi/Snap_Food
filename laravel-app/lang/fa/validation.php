@@ -165,6 +165,7 @@ return [
         'quantity'          => 'تعداد',
         'primary_image'     => 'تصویر اصلی',
         'subject'     => ' موضوع',
+        'address_id'     => 'آدزرس',
     ],
 
 ];

@@ -84,3 +84,8 @@ function getMiladiDate($date)
 {
     return Verta::parse($date)->formatGregorian('Y-n-j H:i:s');
 }
+
+function getJalaliDate($date)
+{
+    return verta($date)->format('Y/m/j H:i:s');
+}

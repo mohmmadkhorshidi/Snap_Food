@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ghasedaksms/ghasedaksms-laravel": "^1.0",
+        "hekmatinasser/verta": "^8.4",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9"
     },
@@ -22,7 +24,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        } ,
+        "files": ["app/Helpers/helper.php"]
     },
     "autoload-dev": {
         "psr-4": {
